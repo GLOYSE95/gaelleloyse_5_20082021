@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+  font-size: 1em;
+}
+body {
+  width: 100%;
+  font-family: "amikoregular", helvetica, Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  color: white;
+  padding-left: 150px;
+  font-size: 1.4em;
+  text-align: left;
+}
+h2 {
+  color: white;
+  padding: 15px 40px 0 40px;
+  font-size: 24px;
+  text-align: left;
+  line-height: 0.6em;
+  text-transform: uppercase;
+}
+p {
+  font-family: Helvetica, sans-serif;
+  padding: 20px 20px;
+}
+ul {
+  display: flex;
+}
+ul li {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    text-decoration: none;
+    color: $colors-primary;
+  }
+}
