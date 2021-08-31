@@ -1,23 +1,43 @@
+// pointeur index.html
 const cameraCard = document.getElementById("cardCamera");
+const cardSelectCamera = document.getElementById("cardSelectCamera");
+const linkProduct = document.getElementsByClassName("oneCard");
 
-var cameras;
+// Requete API récupération des données
+const fetchCam = async () => {
+  await fetch("http://localhost:3000/api/cameras")
+    .then((res) => res.json())
+    .then((data) => (cameras = data));
+};
 
-//Appel produits // Requete APIasync
-async function fetchCameras() {
-  let rep = await fetch("http://localhost:3000/api/cameras", { method: "GET" });
-  let response = await rep.json();
-  return response;
-}
-cameras = fetchCameras();
-console.log("blabla ", cameras);
+//arrondir le prix
+const centEuro = (x) => {
+  return (x = x / 100);
+};
 
-function productCard() {
-  for (camera in cameras) {
-    cardCamera.innerHTML = `
-          <img class="" src="${camera.imageUrl}"/>
-          <h5 class="" >${camera.name}</h5>
-          <p class="" >${camera.description}</p>
-          <p class="">${camera.price}</p>
-          `;
-  }
-}
+//Appel produits innerHtml
+const showProducts = async () => {
+  await fetchCam();
+
+  cameraCard.innerHTML = cameras
+    .map(
+      (camera) =>
+        `
+      <a href="./produits.html?id=${camera._id}">
+        <div class="oneCard">
+          <div class="contain-imgCamera">
+              <img class="imgCamera" src="${camera.imageUrl}" alt="photo" />
+          </div>
+          <div class="textCamera">
+            <h3 class=" ">${camera.name}</h3>
+          <p class=" " >${camera.description}</p>
+            <p class="priceCamera"> Prix : ${centEuro(camera.price)} €</p>
+           </div>
+       </div>
+     </a>
+   `
+    )
+    .join("");
+};
+
+showProducts();
