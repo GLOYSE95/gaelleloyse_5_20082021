@@ -1,12 +1,29 @@
 const cameraCard = document.getElementById("selectCamera");
-let monProduit;
+let cameras;
+let camera;
+let theProduct;
+let i;
+let textTheProduct = `
+  <div class="oneCard">
+    <div class="contain-imgCamera">
+      <img class="imgCamera" src=" " alt="photo" />
+    </div>
+    <div class="textCamera">
+      <h3 class=" "> </h3>
+      <p class=" "> </p>
+      <p class="priceCamera"> Prix : €</p>
+    </div>
+  </div>
+  `;
 
 // Requete API récupération des données
 const fetchCam = async () => {
   await fetch("http://localhost:3000/api/cameras")
     .then((res) => res.json())
     .then((data) => (cameras = data));
+  //return cameras;
 };
+fetchCam();
 
 //recupération Id produit selectionné par url
 var queryUrlId = window.location.search;
@@ -16,29 +33,21 @@ var queryUrlId = window.location.search;
 var idObject = queryUrlId.slice(4);
 //console.log(idObject);
 
-//innerHTML du produit par l'id
-const showProduct = async () => {
+//recupération des données du produit selectionné
+const selectProduct = async () => {
   await fetchCam();
-  //console.log(cameras[3]._id);
-  //console.log(idObject);
-  for (i = 0; i < 5; i++) {
-    if (cameras[i]._id == idObject) {
-      //console.log("ca fonctionne");
-      console.log(cameras[i]);
 
-      cameraCard.innerHTML = `
-        <div class="oneCard">
-          <div class="contain-imgCamera">
-              <img class="imgCamera" src="${cameras[i].imageUrl}" alt="photo" />
-          </div>
-          <div class="textCamera">
-            <h3 class=" ">${cameras[i].name}</h3>
-          <p class=" " >${cameras[i].description}</p>
-            <p class="priceCamera"> Prix : ${cameras[i].price} €</p>
-           </div>
-       </div>
-   `.join("");
+  //console.log(`${cameras}`);?????
+  //console.log(cameras);
+  //console.log(cameras[3]._id);
+
+  for (let i in cameras) {
+    if (cameras[i]._id == idObject) {
+      theProduct = cameras[i];
+      console.table(theProduct);
+    } else {
+      console.log("produit non correspondant");
     }
   }
 };
-showProduct();
+selectProduct();
