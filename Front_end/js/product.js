@@ -1,63 +1,36 @@
-// let cameras;
-// let camera;
-// let theProduct;
-// let i;
-// let textTheProduct = `
-//   <div class="oneCard">
-//     <div class="contain-imgCamera">
-//       <img class="imgCamera" src=" " alt="photo" />
-//     </div>
-//     <div class="textCamera">
-//       <h3 class=" "> </h3>
-//       <p class=" "> </p>
-//       <p class="priceCamera"> Prix : €</p>
-//     </div>
-//   </div>
-//   `;
+const cameraCard = document.getElementById("selectCamera");
+let camera;
 
-// // Requete API récupération des données
-// const fetchCam = async () => {
-//   await fetch("http://localhost:3000/api/cameras")
-//     .then((res) => res.json())
-//     .then((data) => (cameras = data));
-//   //return cameras;
-// };
-// fetchCam();
-
-// //recupération Id produit selectionné par url
-// var queryUrlId = window.location.search;
-// //console.log(queryUrlId);
-
-// //recupération valeur Id produit selectionné
-// var idObject = queryUrlId.slice(4);
-// //console.log(idObject);
-
-// function selectProduct(x) {
-//   fetch(`http://localhost:3000/api/cameras/` + idObject)
-//     .then((res) => res.json())
-//     .then((data) => (laCamera = data));
-// }
-// selectProduct();
-
-// // //recupération des données du produit selectionné
-// // const selectProduct = async () => {
-// //   await fetchCam();
-
-// //   //console.log(cameras);
-// //   //console.log(cameras[3]._id);
-
-// //   for (let i in cameras) {
-// //     if (cameras[i]._id == idObject) {
-// //       theProduct = cameras[i];
-// //       console.table(theProduct);
-// //     } else {
-// //       console.log("produit non correspondant");
-// //     }
-// //   }
-// // };
-// // selectProduct();
-
-const cameraId = () => {
+// récupération de l'id de l'Url affichée
+const getCameraId = () => {
   return new URL(location.href).searchParams.get("id");
 };
-console.log(cameraId());
+getCameraId();
+
+//Récupération des données du produit affiché
+const fetchCamera = async () => {
+  await fetch(`http://localhost:3000/api/cameras/${getCameraId()}`)
+    .then((res) => res.json())
+    .then((data) => (cam = data));
+  console.log(cam);
+};
+
+//arrondir le prix
+const centEuro = (x) => {
+  return (x = x / 100);
+};
+
+// Afficher l'élément dans le html
+const displayCamera = async () => {
+  await fetchCamera();
+
+  document.getElementById("imgProduct").src = cam.imageUrl;
+  document.getElementById("h3Product").textContent = cam.name;
+  document.getElementById("descriptProduct").textContent = cam.description;
+  document.getElementById("priceProduct").textContent = `${centEuro(
+    cam.price
+  )} €`;
+  document.getElementById("opt1").textContent = cam.lenses[0];
+  document.getElementById("opt2").textContent = cam.lenses[1];
+};
+displayCamera();
