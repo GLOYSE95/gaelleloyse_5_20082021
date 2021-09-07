@@ -168,13 +168,13 @@ img.imgCamera[src*="vcam_5.jpg"] {
   display: flex;
   justify-content: center;
 }
-.formProcuct--personal {
+.formProduct--personal {
   display: inline-block;
   width: 250px;
   height: 150px;
   padding-left: 20px;
 }
-.selectProcuct--personal {
+.selectProduct--personal {
   width: 380px;
   height: 30px;
   padding-left: 10px;
@@ -198,7 +198,7 @@ img.imgCamera.imgCameraProduct[src*="vcam_3.jpg"] {
 }
 img.imgCamera.imgCameraProduct[src*="vcam_4.jpg"] {
   width: 195%;
-  transform: translate(-210px, 0px);
+  transform: translate(-210px, -20px);
 }
 img.imgCamera.imgCameraProduct[src*="vcam_5.jpg"] {
   width: 200%;

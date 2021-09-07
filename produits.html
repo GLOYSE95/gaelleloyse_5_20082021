@@ -58,7 +58,7 @@
                   <a class="nav-link" href="index.html">Accueil</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="lessons.html">Panier</a>
+                  <a class="nav-link" href="panier.html">Panier</a>
                 </li>
               </ul>
             </div>
@@ -93,18 +93,32 @@
               <h3 id="h3Product" class="oneCard--h3"></h3>
               <p id="descriptProduct"></p>
               <p id="priceProduct" class="priceCamera"></p>
-              <form class="formProcuct--personal">
-                <label for="personalisation">Votre personnalisation</label>
-                <select name="personalisation" class="selectProcuct--personal">
-                  <option value="options">choisissez votre lentille</option>
+              <form class="formProduct--personal">
+                <label for="personalisation">Choisissez votre lentille</label>
+                <select
+                  name="personalisation"
+                  class="selectProduct--personal"
+                  id="optionsProduct"
+                >
+                  <option value="optionnull" id="optionnull">
+                    Sans lentilles
+                  </option>
                   <option value="option1" id="opt1"></option>
                   <option value="option2" id="opt2"></option>
-                  <option value="option3" id="opt2"></option>
-                  <option value="option4" id="opt2"></option>
-                  <option value="option5" id="opt2"></option>
+                  <option value="option3" id="opt3"></option>
+                  <option value="option4" id="opt4"></option>
                 </select>
               </form>
-              <button type="submit" class="addToCart">Ajouter au panier</button>
+              <button
+                type="submit"
+                method="post"
+                action=""
+                class="addToCart"
+                name="btnEnvoiPanier"
+                id="btnEnvoiPanier"
+              >
+                Ajouter au panier
+              </button>
             </div>
           </div>
         </div>

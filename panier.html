@@ -4,21 +4,157 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <meta name="description" content="" >
-    <meta name="robots" content="index, follow">
-    <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
--->
-    <link rel="stylesheet" type="text/css" href=".css/style.css">
 
-
+    <title>Votre panier Oriphoto</title>
+    <meta
+      name="description"
+      content="Oriphoto, le site de vente d'appareils photo vintages. Trouvez votre appareil livrable en France et à l'étranger."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" type="text/css" href="Front_end/css/style.css" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="Front_end/imports/OrinologoIcone.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
- 
+    <div class="bg-light">
+      <div class="container">
+        <div class="row">
+          <nav class="col navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="index.html">
+              <img
+                src="Front_end/imports/OrinologoPetit.png"
+                width="100"
+                height="auto"
+                alt="Site logo"
+            /></a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarContent" class="collapse navbar-collapse">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Accueil</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="lessons.html">Panier</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <main class="container">
+
+      <article class="article--container">
+        <div class="h2--background">
+          <h2>Votre panier</h2>
+        </div>
+
+        <div class="recap" id="recapCommande">
+          <div class="bg-light selectPanier">
+            
+           <div class="textProduct">
+              <h3 id="h3Product" class="oneCard--h3"></h3>
+              <p id="priceProduct" class="priceCamera"></p>
+              <form class="formProcuct--personal">
+                <label for="personalisation">Votre personnalisation</label>
+              </form>
+              <form>
+                <input type="reset" name="annulation" value="Annuler votre choix">
+                </form>            
+              </div>
+          </div>
+
+          <article class="formulaire">
+            <div class="h2--background">
+              <h2>Formulaire de commande</h2>
+            </div>
+            <div class="recap" id="formCommande">
+              <div class="bg-light ">
 
 
+          <form>
+            <label for="nom">Nom</label>
+            <input type="text" name="nom">
+            <label for="prénom">Prénom</label>
+            <input type="text" name="prénom">
+            <label for="email">E-mail</label>
+            <input type="email" name="email">
+            <label for="telephone">Téléphone</label>
+            <input type="email" name="telephone">
+            <label for="adresseFact">Adresse de facturation</label>
+            <input type="text" name="adresseFact">
+            <label for="cpFact">Code postal</label>
+            <input type="text" name="cpFact">
+            <label for="villeFact">Ville</label>
+            <input type="text" name="villeFact">
+            <label for="adresseLiv">Adresse de livraison</label>
+            <input type="text" name="adresseLiv">
+            <label for="cpLiv">Code postal</label>
+            <input type="text" name="cpLiv">
+            <label for="villeLiv">Ville</label>
+            <input type="text" name="villeLiv">
+          </form>
+          <input type="submit" name="validate" value="Valider votre commande">
+              </div>
+            </div>
+            
+      </article>
+    </main>
 
-    <script src="js/index.js"></script>
+    <footer>
+      <div class="reseaux">
+        <a><div class="twitter"></div></a>
+        <a><div class="facebook"></div></a>
+        <a><div class="Instagram"></div></a>
+      </div>
+      <ul class="reseaux">
+        <li>A PROPOS</li>
+        <li>SERVICES</li>
+        <li>MENTIONS LEGALES</li>
+      </ul>
+    </footer>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script src="Front_end/js/product.js"></script>
   </body>
 </html>
