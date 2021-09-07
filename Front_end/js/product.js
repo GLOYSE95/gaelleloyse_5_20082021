@@ -23,17 +23,18 @@ const centEuro = (x) => {
 const displayCamera = async () => {
   await fetchCamera();
 
-  //let pointeurOptions = document.getElementById("optionsProduct");
-  options = cam.lenses;
+  //constante pour le tab des lentilles;
+  const options = cam.lenses;
 
-  // nbrOptions = options.length;
-  // if (nbrOptions < 3) {
-  //   document.getElementById("opt1").textContent = "Pas d'option pour ce produit";}
-  // for (let i = 0; i < options.lenght; i++) {
-  //   let create = document.createElement("option");
-  //   pointeurOptions.appendChild(create);
-  //   create.textContent = cam.lenses[i];
-  // }
+  //pointer la balise select et ajouter le nbr d'options;
+  const pointeurOptions = document.getElementById("optionsProduct");
+  for (let i = 0; i < options.length; i++) {
+    let create = document.createElement("option");
+    pointeurOptions.appendChild(create);
+    create.textContent = cam.lenses[i];
+    //creation des attributs value;
+    create.setAttribute("value", `opt${i + 1}`);
+  }
 
   document.getElementById("imgProduct").src = cam.imageUrl;
   document.getElementById("h3Product").textContent = cam.name;
@@ -41,11 +42,6 @@ const displayCamera = async () => {
   document.getElementById("priceProduct").textContent = `${centEuro(
     cam.price
   )} €`;
-
-  document.getElementById("opt1").textContent = options[0];
-  document.getElementById("opt2").textContent = options[1];
-  document.getElementById("opt3").textContent = options[2];
-  document.getElementById("opt4").textContent = options[3];
 };
 displayCamera();
 
