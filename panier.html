@@ -10,7 +10,7 @@
       name="description"
       content="Oriphoto, le site de vente d'appareils photo vintages. Trouvez votre appareil livrable en France et à l'étranger."
     />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, nofollow" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -75,26 +75,17 @@
         </div>
 
         <div class="recap" id="recapCommande">
-          <div class="bg-light selectPanier">
-            
-           <div class="textProduct">
-              <h3 id="h3Product" class="oneCard--h3"></h3>
-              <p id="priceProduct" class="priceCamera"></p>
-              <form class="formProcuct--personal">
-                <label for="personalisation">Votre personnalisation</label>
-              </form>
-              <form>
-                <input type="reset" name="annulation" value="Annuler votre choix">
-                </form>            
-              </div>
-          </div>
+          <div class="selectPanier" id="containPanier">
+          </div>  
+        </div>
+          
 
-          <article class="formulaire">
-            <div class="h2--background">
-              <h2>Formulaire de commande</h2>
-            </div>
-            <div class="recap" id="formCommande">
-              <div class="bg-light ">
+      <article class="formulaire">
+        <div class="h2--background">
+          <h2>Formulaire de commande</h2>
+        </div>
+        <div class="recap" id="formCommande">
+        <div class="bg-light ">
 
 
           <form>
@@ -155,6 +146,6 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
-    <script src="Front_end/js/product.js"></script>
+    <script src="Front_end/js/panier.js"></script>
   </body>
 </html>

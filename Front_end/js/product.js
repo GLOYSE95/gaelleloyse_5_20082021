@@ -1,11 +1,9 @@
 const cameraCard = document.getElementById("selectCamera");
-let camera;
 
 // récupération de l'id de l'Url affichée
 const getCameraId = () => {
   return new URL(location.href).searchParams.get("id");
 };
-getCameraId();
 
 //Récupération des données du produit affiché
 const fetchCamera = async () => {
@@ -23,10 +21,10 @@ const centEuro = (x) => {
 const displayCamera = async () => {
   await fetchCamera();
 
-  //constante pour le tab des lentilles;
+  //constante pour le tableau des lentilles;
   const options = cam.lenses;
 
-  //pointer la balise select et ajouter le nbr d'options;
+  //pointer la balise select et ajouter le nombre d'options;
   const pointeurOptions = document.getElementById("optionsProduct");
   for (let i = 0; i < options.length; i++) {
     let create = document.createElement("option");
@@ -50,14 +48,13 @@ const envoyerDonnées = async () => {
   // les données à envoyer à la page panier
 
   // Récupérer la value de l'option choisie par user
-  const optionSelect = document.getElementById("optionsProduct");
-  const optionChoice = optionSelect.value;
+  const pointeurOptions = document.getElementById("optionsProduct");
 
-  //pointer le bouton et écouter au click
+  //pointer le bouton "ajouter panier" et écouter au click
   const btnAjout = document.getElementById("btnEnvoiPanier");
   btnAjout.addEventListener("click", (event) => {
     event.preventDefault();
-    const optionChoice = optionSelect.value;
+    const optionChoice = pointeurOptions.value;
     let addToCard = {
       nomProduit: cam.name,
       idProduit: cam._id,
@@ -66,7 +63,22 @@ const envoyerDonnées = async () => {
       prix: `${centEuro(cam.price)} €`,
     };
 
-    console.log(addToCard);
+    //Stocker les choix user dans le local storage
+    //Variable données du Local Storage  + converties en json
+    let localStorageOrinoco = JSON.parse(localStorage.getItem("produitUser"));
+    const localStorageAjoutProduit = () => {
+      localStorageOrinoco.push(addToCard);
+      localStorage.setItem("produitUser", JSON.stringify(localStorageOrinoco));
+    };
+    //Si panier vide
+    if (localStorageOrinoco) {
+      //Si produit dans le panier
+      localStorageAjoutProduit();
+    } else {
+      //Si panier pas vide
+      localStorageOrinoco = [];
+      localStorageAjoutProduit();
+    }
   });
 };
 envoyerDonnées();
