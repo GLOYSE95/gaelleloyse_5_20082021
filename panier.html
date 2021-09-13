@@ -78,6 +78,9 @@
           <div class="selectPanier" id="containPanier">
           </div>  
         </div>
+        <div class="totalPanier">
+          <div class="bg-light panierTotalPrice" id="total"></div>
+      </div>
           
 
       <article class="formulaire">
@@ -88,33 +91,45 @@
         <div class="bg-light ">
 
 
-          <form>
-            <label for="nom">Nom</label>
-            <input type="text" name="nom">
+          <form action="" method="post">
+            <p>
+              <label for="nom">Nom</label>
+            <input required type="text" name="nom">
             <label for="prénom">Prénom</label>
-            <input type="text" name="prénom">
-            <label for="email">E-mail</label>
-            <input type="email" name="email">
-            <label for="telephone">Téléphone</label>
-            <input type="email" name="telephone">
-            <label for="adresseFact">Adresse de facturation</label>
-            <input type="text" name="adresseFact">
-            <label for="cpFact">Code postal</label>
-            <input type="text" name="cpFact">
-            <label for="villeFact">Ville</label>
-            <input type="text" name="villeFact">
-            <label for="adresseLiv">Adresse de livraison</label>
-            <input type="text" name="adresseLiv">
-            <label for="cpLiv">Code postal</label>
-            <input type="text" name="cpLiv">
-            <label for="villeLiv">Ville</label>
-            <input type="text" name="villeLiv">
+            <input required type="text" name="prénom">
+            </p>
+            <p>
+              <label for="email">E-mail</label>
+              <input required type="email" name="email">
+              <label for="telephone">Téléphone</label>
+              <input required type="number" name="telephone">
+            </p>
+            <p>
+              <label for="adresseFact">Adresse de facturation</label>
+              <input required type="text" name="adresseFact">
+              <label for="cpFact">Code postal</label>
+              <input required type="text" name="cpFact">
+              <label for="villeFact">Ville</label>
+              <input required type="text" name="villeFact">
+            </p>
+            <p>
+              <label for="adresseLiv">Adresse de livraison</label>
+              <input required type="text" name="adresseLiv">
+              <label for="cpLiv">Code postal</label>
+              <input required type="text" name="cpLiv">
+              <label for="villeLiv">Ville</label>
+              <input required type="text" name="villeLiv">
+            </p>
           </form>
-          <input type="submit" name="validate" value="Valider votre commande">
-              </div>
+          <form>
+            <input type="submit" name="validate" value="Valider votre commande" class="inputValidation">
+          </form>
             </div>
+
             
       </article>
+<div id="essai"></div>
+
     </main>
 
     <footer>

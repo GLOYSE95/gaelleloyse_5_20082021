@@ -56,6 +56,7 @@ const envoyerDonnées = async () => {
     event.preventDefault();
     const optionChoice = pointeurOptions.value;
     let addToCard = {
+      imgProduit: cam.imageUrl,
       nomProduit: cam.name,
       idProduit: cam._id,
       optionProduit: optionChoice,
