@@ -63,7 +63,7 @@ for (let j = 0; j < selectBtnSupprimer.length; j++) {
     event.preventDefault();
 
     elementSupprime = localStorageOrinoco.splice([j], 0);
-    console.log(elementSupprime);
+    //console.log(elementSupprime);
     //localStorage.setItem("produitUser");
     //window.location.href = "panier.html";
   });
@@ -83,18 +83,130 @@ if (localStorageOrinoco !== null) {
     localStorage.removeItem("produitUser");
     window.location.href = "panier.html";
   });
+
+  //----------------inserer le bouton Passer la commande
+  //pointer sur div
+  const passerCommande = document.getElementById("total");
+  const passerCommandeHtml = `
+<form>
+<input type="submit" name="validate" value="Passer la commande" class="inputValidation inputCommande" id="commander">
+</form>
+`;
+  //inserer html
+  passerCommande.insertAdjacentHTML("afterend", passerCommandeHtml);
 }
+
 //----------calcul du prix total du panier
+
+//pointer sur la div
 const prixTotal = document.getElementById("total");
 
-var prixTotalHtml = `
-<div class="priceCamera panierParagraphe">Prix total de votre panier : </div>`;
+//Tableau qui stocke les tous prix du panier
+var tableauDesPrix = [];
+var totalPrix = 0;
 
-var prixTotalTableau = [];
+//Boucle de lecture de tous les prix et stockage dans tableau
 if (localStorageOrinoco !== null) {
   for (k = 0; k < localStorageOrinoco.length; k++) {
-    prixDuPanier = localStorageOrinoco[k].prix;
-    prixTotalTableau.push(prixDuPanier);
-    console.log(prixTotalTableau);
+    //supprimer sigle euro
+    prixDuPanier = localStorageOrinoco[k].prix.substring(0, 4);
+    tableauDesPrix.push(prixDuPanier);
   }
 }
+//transformer tableau string en tableau number
+const tableauDesPrixNumber = tableauDesPrix.map((i) => Number(i));
+
+//variable du calcul prix total
+for (l = 0; l < tableauDesPrixNumber.length; l++) {
+  totalPrix += tableauDesPrixNumber[l];
+}
+//text html à ajouter
+var prixTotalHtml = `
+<div class="priceCamera panierParagraphe">Prix total de votre panier : ${totalPrix} €</div>`;
+prixTotal.innerHTML = prixTotalHtml;
+
+//----------Affichage du formulaire de commande
+//Pointer sur bouton commander et constante Html formulaire
+const btnCommander = document.getElementById("commander");
+const commanderHtml = `
+
+        <div class="h2--background">
+          <h2>Formulaire de commande</h2>
+        </div>
+        <div class="recap" id="formCommande">
+        <div class="bg-light ">
+
+          <form action="" method="post">
+            <p>
+              <label for="nom">Nom</label>
+            <input required type="text" name="nom" class="miInput" id="nom">
+            <label for="prenom">Prénom</label> 
+            <input required type="text" name="prenom" class="miInput" id="prenom">
+            </p>
+            <p>
+              <label for="email">E-mail</label>
+              <input required type="email" name="email" class="miInput" id="email">
+              <label for="telephone">Téléphone</label>
+              <input required type="text" name="telephone" class="miInput" id="telephone">
+            </p>
+            <p>
+              <label for="adresseFact">Adresse de facturation</label>
+              <input required type="text" name="adresseFact" class="adressInput" id="adFacturation">
+            </p>
+            <p>
+              <label for="cpFact">Code postal</label>
+              <input required type="text" name="cpFact" class="miInput" id="cpFacturation">
+              <label for="villeFact">Ville</label>
+              <input required type="text" name="villeFact" class="miInput" id="villeFacturation">
+            </p>
+            <p>
+              <label for="adresseLiv">Adresse de livraison</label>
+              <input required type="text" name="adresseLiv" class="adressInput" id="adLivraison">
+            </p>
+              <p>
+              <label for="cpLiv">Code postal</label>
+              <input required type="text" name="cpLiv" class="miInput" id="cpLivraison">
+              <label for="villeLiv">Ville</label>
+              <input required type="text" name="villeLiv" class="miInput" id="villeLivraison">
+            </p>
+          </form>
+            </div>
+            <form>
+              <input type="submit" name="validate" value="Valider votre commande" class="inputValidation" id="validerCommande">
+            </form>
+
+            
+      </article>`;
+//------Ecouter au click pour Afficher le formulaire
+btnCommander.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  //------Pointer sur la div container
+  const formulaireAffichage = document.getElementById("formulaireContact");
+  formulaireAffichage.innerHTML = commanderHtml;
+  //-------------------------Formulaire de commande
+  //Ecouter au click : enregistrer les valeurs du formulaire dans le local storage
+
+  //selectionner le btn valider
+  const validerLaCommande = document.getElementById("validerCommande");
+  console.log(validerLaCommande);
+
+  validerLaCommande.addEventListener("click", (event) => {
+    event.preventDefault();
+    //----création d'un objet UserOrinoco
+    UserOrinoco = {
+      nom: document.querySelector("#nom").value,
+      prenom: document.querySelector("#prenom").value,
+      email: document.querySelector("#email").value,
+      telephone: document.querySelector("#telephone").value,
+      adresseFacturation: document.querySelector("#adFacturation").value,
+      cpFacturation: document.querySelector("#cpFacturation").value,
+      villeFacturation: document.querySelector("#villeFacturation").value,
+      adresseLivraison: document.querySelector("#adLivraison").value,
+      cpLivraison: document.querySelector("#cpLivraison").value,
+      villeLivraison: document.querySelector("#villeLivraison").value,
+    };
+    //----Envoie de l'objet dans le local storage
+    localStorage.setItem("User", JSON.stringify(UserOrinoco));
+  });
+});
