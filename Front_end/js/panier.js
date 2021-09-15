@@ -136,43 +136,29 @@ const commanderHtml = `
         <div class="recap" id="formCommande">
         <div class="bg-light ">
 
-          <form action="" method="post">
+          <form action="" method="post" id="formulaireCommande>
             <p>
-              <label for="nom">Nom</label>
-            <input required type="text" name="nom" class="miInput" id="nom">
-            <label for="prenom">Prénom</label> 
-            <input required type="text" name="prenom" class="miInput" id="prenom">
+              <label for="firstname">Prénom</label>
+            <input required type="text" name="nom" class="inputFormulaire miInput" id="firstName">
+            <label for="lastname">Nom</label> 
+            <input required type="text" name="nom" class="inputFormulaire miInput" id="lastName">
             </p>
             <p>
               <label for="email">E-mail</label>
-              <input required type="email" name="email" class="miInput" id="email">
-              <label for="telephone">Téléphone</label>
-              <input required type="text" name="telephone" class="miInput" id="telephone">
+              <input required type="email" name="email" class="inputFormulaire miInput" id="email">
             </p>
             <p>
-              <label for="adresseFact">Adresse de facturation</label>
-              <input required type="text" name="adresseFact" class="adressInput" id="adFacturation">
-            </p>
-            <p>
-              <label for="cpFact">Code postal</label>
-              <input required type="text" name="cpFact" class="miInput" id="cpFacturation">
-              <label for="villeFact">Ville</label>
-              <input required type="text" name="villeFact" class="miInput" id="villeFacturation">
-            </p>
-            <p>
-              <label for="adresseLiv">Adresse de livraison</label>
-              <input required type="text" name="adresseLiv" class="adressInput" id="adLivraison">
+              <label for="address">Adresse de livraison</label>
+              <input required type="text" name="adresseLiv" class="inputFormulaire adressInput" id="address">
             </p>
               <p>
-              <label for="cpLiv">Code postal</label>
-              <input required type="text" name="cpLiv" class="miInput" id="cpLivraison">
-              <label for="villeLiv">Ville</label>
-              <input required type="text" name="villeLiv" class="miInput" id="villeLivraison">
+              <label for="city">Ville</label>
+              <input required type="text" name="villeLiv" class="inputFormulaire miInput" id="city">
             </p>
           </form>
             </div>
             <form>
-              <input type="submit" name="validate" value="Valider votre commande" class="inputValidation" id="validerCommande">
+              <input type="submit" name="validate" value="Valider votre commande" class="inputFormulaire inputValidation" id="validerCommande">
             </form>
 
             
@@ -189,24 +175,22 @@ btnCommander.addEventListener("click", (event) => {
 
   //selectionner le btn valider
   const validerLaCommande = document.getElementById("validerCommande");
-  console.log(validerLaCommande);
 
   validerLaCommande.addEventListener("click", (event) => {
     event.preventDefault();
-    //----création d'un objet UserOrinoco
-    UserOrinoco = {
-      nom: document.querySelector("#nom").value,
-      prenom: document.querySelector("#prenom").value,
-      email: document.querySelector("#email").value,
-      telephone: document.querySelector("#telephone").value,
-      adresseFacturation: document.querySelector("#adFacturation").value,
-      cpFacturation: document.querySelector("#cpFacturation").value,
-      villeFacturation: document.querySelector("#villeFacturation").value,
-      adresseLivraison: document.querySelector("#adLivraison").value,
-      cpLivraison: document.querySelector("#cpLivraison").value,
-      villeLivraison: document.querySelector("#villeLivraison").value,
-    };
-    //----Envoie de l'objet dans le local storage
-    localStorage.setItem("User", JSON.stringify(UserOrinoco));
+
+    //Classe et creation objet contact
+    let contact = {};
+    class contactForm {
+      constructor() {
+        this.firstName = document.getElementById("firstName").value;
+        this.lastName = document.getElementById("lastName").value;
+        this.email = document.getElementById("email").value;
+        this.address = document.getElementById("address").value;
+        this.city = document.getElementById("city").value;
+      }
+    }
+    contact = new contactForm();
+    console.log(contact);
   });
 });
