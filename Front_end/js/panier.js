@@ -57,15 +57,16 @@ if (localStorageOrinoco === null || localStorageOrinoco == 0) {
 
 //----selection des boutons supprimer
 let selectBtnSupprimer = document.querySelectorAll(".inputSuppression");
+console.log(selectBtnSupprimer);
 
 for (let j = 0; j < selectBtnSupprimer.length; j++) {
   selectBtnSupprimer[j].addEventListener("click", (event) => {
     event.preventDefault();
 
-    elementSupprime = localStorageOrinoco.splice([j], 0);
-    //console.log(elementSupprime);
-    //localStorage.setItem("produitUser");
-    //window.location.href = "panier.html";
+    elementSupprime = localStorageOrinoco.splice([j], 1);
+    console.log(elementSupprime);
+    localStorage.setItem("produitUser");
+    window.location.href = "panier.html";
   });
 }
 
@@ -140,10 +141,10 @@ const commanderHtml = `
             <div class="form-group">
               
                 <label for="firstname">Prénom</label></br>
-                <input type="text" name="prenom" class="col-6 inputFormulaire miInput" id="firstName">
+                <input type="text" name="prenom" class="col-6 inputLetter inputFormulaire miInput" id="firstName">
                 <p id="errorFirstName" class="error"></p>
                 <label for="lastname">Nom</label> </br>
-                <input required type="text" name="nom" class="col-6 inputFormulaire miInput" id="lastName">
+                <input required type="text" name="nom" class="col-6 inputLetter inputFormulaire miInput" id="lastName">
                 <p id="errorLastName" class="error"></p>
                 
               
@@ -158,8 +159,8 @@ const commanderHtml = `
                 
               
                 <label for="city">Ville</label></br>
-                <input required type="text" name="villeLiv" class="col-6 inputFormulaire miInput" id="city">
-                <p id="errorCity" class="error"></p>
+                <input required type="text" name="villeLiv" class="col-6 inputLetter inputFormulaire miInput" id="city">
+                <p id="errorCity" class="error"></p> 
                 
             </div>
 
@@ -209,29 +210,41 @@ btnCommander.addEventListener("click", (event) => {
 
   //Pointer le formulaire et l'input
   const leFormulaire = document.getElementById("formCommande");
-  //Pointer l'input firstname
+  //Pointer l'input firstname LastName city
+  const inputLetter = document.getElementsByClassName("inputLetter");
+  //console.log(inputLetter);
   const leFormulairePrenom = document.getElementById("firstName");
-  console.log(leFormulairePrenom);
+  const leFormulaireNom = document.getElementById("lastName");
+  const leFormulaireCity = document.getElementById("city");
 
   //Ecouter au click change sur l'input
   leFormulairePrenom.addEventListener("change", function () {
     let firstNameRegex = /^[A-Z-a-zëïö]+$/;
 
-    if (leFormulairePrenom.value.trim() == "") {
+    const errorRequired = () => {
       let errorFirstName = document.getElementById("errorFirstName");
-      errorFirstName.innerHTML = "Veuillez saisir votre prénom";
+      errorFirstName.innerHTML = "Champs requis";
+      errorFirstName.style.color = "red";
       return false;
-    }
-    if (firstNameRegex.test(leFormulairePrenom.value)) {
+    };
+    const inputValide = () => {
       console.log("true");
-      errorFirstName.innerHTML = "Prénom valide, merci";
+      errorFirstName.innerHTML = "Champs valide, merci";
       errorFirstName.style.color = "green";
       return true;
-    } else {
+    };
+    const errorJustLetter = () => {
       errorFirstName.innerHTML = "Seuls les lettres sont autorisés";
-      console.log("false");
-
+      errorFirstName.style.color = "red";
       return false;
+    };
+
+    if (leFormulairePrenom.value == "") {
+      errorRequired();
+    } else if (firstNameRegex.test(leFormulairePrenom.value)) {
+      inputValide();
+    } else {
+      errorJustLetter();
     }
   });
 });
