@@ -133,33 +133,41 @@ const commanderHtml = `
         <div class="h2--background">
           <h2>Formulaire de commande</h2>
         </div>
-        <div class="recap" id="formCommande">
-        <div class="bg-light ">
 
-          <form action="" method="post" id="formulaireCommande>
-            <p>
-              <label for="firstname">Prénom</label>
-            <input required type="text" name="nom" class="inputFormulaire miInput" id="firstName">
-            <label for="lastname">Nom</label> 
-            <input required type="text" name="nom" class="inputFormulaire miInput" id="lastName">
-            </p>
-            <p>
-              <label for="email">E-mail</label>
-              <input required type="email" name="email" class="inputFormulaire miInput" id="email">
-            </p>
-            <p>
-              <label for="address">Adresse de livraison</label>
-              <input required type="text" name="adresseLiv" class="inputFormulaire adressInput" id="address">
-            </p>
-              <p>
-              <label for="city">Ville</label>
-              <input required type="text" name="villeLiv" class="inputFormulaire miInput" id="city">
-            </p>
-          </form>
+        <form action="" method="post" id="formCommande">
+          <div class="bg-light bg-light-form">
+
+            <div class="form-group">
+              
+                <label for="firstname">Prénom</label></br>
+                <input type="text" name="prenom" class="col-6 inputFormulaire miInput" id="firstName">
+                <p id="errorFirstName" class="error"></p>
+                <label for="lastname">Nom</label> </br>
+                <input required type="text" name="nom" class="col-6 inputFormulaire miInput" id="lastName">
+                <p id="errorLastName" class="error"></p>
+                
+              
+                <label for="email">E-mail</label></br>
+                <input required type="email" name="email" class="col-6 inputFormulaire miInput" id="email">
+                <p id="errorEmail" class="error"></p>
+                
+              
+                <label for="address">Adresse de livraison</label></br>
+                <input required type="text" name="adresseLiv" class="col-12 inputFormulaire adressInput" id="address">
+                <p id="errorAddress" class="error"></p>
+                
+              
+                <label for="city">Ville</label></br>
+                <input required type="text" name="villeLiv" class="col-6 inputFormulaire miInput" id="city">
+                <p id="errorCity" class="error"></p>
+                
             </div>
-            <form>
-              <input type="submit" name="validate" value="Valider votre commande" class="inputFormulaire inputValidation" id="validerCommande">
-            </form>
+
+            <input type="checkbox" name="cgv" class="form-check-input inputValidation" id="cgv">
+            <label for="cgv">J'accepte les conditions générales de vente</label>
+            <p id="errorCGV" class="error"></p>
+            <input type="submit" name="validate" value="Valider votre commande" class="inputFormulaire inputValidation" id="validerCommande">
+          </form>
 
             
       </article>`;
@@ -170,16 +178,18 @@ btnCommander.addEventListener("click", (event) => {
   //------Pointer sur la div container
   const formulaireAffichage = document.getElementById("formulaireContact");
   formulaireAffichage.innerHTML = commanderHtml;
+
   //-------------------------Formulaire de commande
-  //Ecouter au click : enregistrer les valeurs du formulaire dans le local storage
+  //Ecouter au click : pour enregistrer les valeurs du formulaire dans le local storage
 
   //selectionner le btn valider
   const validerLaCommande = document.getElementById("validerCommande");
 
+  //Ecouter au click
   validerLaCommande.addEventListener("click", (event) => {
     event.preventDefault();
 
-    //Classe et creation objet contact
+    //Creation objet contact avec donnés user
     let contact = {};
     class contactForm {
       constructor() {
@@ -192,5 +202,36 @@ btnCommander.addEventListener("click", (event) => {
     }
     contact = new contactForm();
     console.log(contact);
+  });
+
+  //---------------------validation du formulaire
+  /// utilisation des Expressions régulières Regex
+
+  //Pointer le formulaire et l'input
+  const leFormulaire = document.getElementById("formCommande");
+  //Pointer l'input firstname
+  const leFormulairePrenom = document.getElementById("firstName");
+  console.log(leFormulairePrenom);
+
+  //Ecouter au click change sur l'input
+  leFormulairePrenom.addEventListener("change", function () {
+    let firstNameRegex = /^[A-Z-a-zëïö]+$/;
+
+    if (leFormulairePrenom.value.trim() == "") {
+      let errorFirstName = document.getElementById("errorFirstName");
+      errorFirstName.innerHTML = "Veuillez saisir votre prénom";
+      return false;
+    }
+    if (firstNameRegex.test(leFormulairePrenom.value)) {
+      console.log("true");
+      errorFirstName.innerHTML = "Prénom valide, merci";
+      errorFirstName.style.color = "green";
+      return true;
+    } else {
+      errorFirstName.innerHTML = "Seuls les lettres sont autorisés";
+      console.log("false");
+
+      return false;
+    }
   });
 });

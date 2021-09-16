@@ -273,12 +273,7 @@ img.imgCamera.imgCameraProduct[src*="vcam_5.jpg"] {
   margin-bottom: 40px;
 }
 /*formulaire*/
-.adressInput {
-  width: 100%;
-}
-.miInput {
-  width: 40%;
-}
+
 .inputValidation {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 18px;
@@ -288,6 +283,15 @@ img.imgCamera.imgCameraProduct[src*="vcam_5.jpg"] {
   background: linear-gradient(0.25turn, black, #8072a5);
   border: none;
   color: #fff;
+}
+p.error {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  color: red;
+}
+.bg-light-form {
+  padding: 20px 40px;
 }
 
 /*footer*/
@@ -510,6 +514,7 @@ table {
 
 label {
   display: inline-block;
+  padding-top: 20px;
 }
 
 button {
@@ -2420,7 +2425,10 @@ textarea.form-control-lg {
   color-adjust: exact;
 }
 .form-check-input[type="checkbox"] {
+  margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 0.25em;
+  padding-top: 20px;
 }
 .form-check-input[type="radio"] {
   border-radius: 50%;
