@@ -91,7 +91,7 @@ header ul li {
   margin: 20px 0 40px 0;
 }
 
-/*style des cartes Produits et produit seul*/
+/*-----------------style des cartes Produits et produit seul*/
 .oneCard {
   width: 375px;
   margin-bottom: 20px;
@@ -152,12 +152,13 @@ img.imgCamera[src*="vcam_5.jpg"] {
   font-weight: 500;
   padding: 0 20px 0 20px;
 }
-/*card product alone*/
+/*------------------card product alone*/
 .oneCard--Product {
   display: flex;
   flex-wrap: wrap;
   width: 800px;
   justify-content: left;
+  margin-bottom: 40px;
 }
 .textProduct {
   position: relative;
@@ -213,7 +214,7 @@ img.imgCamera.imgCameraProduct[src*="vcam_5.jpg"] {
   border: none;
   color: #fff;
 }
-/*Page panier*/
+/*-------------------------Page panier*/
 .panierSelectionImg {
   width: 240px;
   height: 170px;
@@ -272,7 +273,7 @@ img.imgCamera.imgCameraProduct[src*="vcam_5.jpg"] {
 .inputCommande {
   margin-bottom: 40px;
 }
-/*formulaire*/
+/*-----------------formulaire*/
 
 .inputValidation {
   font-family: Helvetica, Arial, sans-serif;
@@ -293,8 +294,48 @@ p.error {
 .bg-light-form {
   padding: 20px 40px;
 }
-
-/*footer*/
+/*---------------------------Page commande*/
+.h2commande {
+  text-align: center;
+  color: black;
+  padding-bottom: 1em;
+}
+.h2commande--white {
+  text-align: center;
+  color: white;
+  font-size: 1.3em;
+  padding-top: 1em;
+}
+.cardCommande {
+  background-color: #f0e8f0;
+}
+.hero--logoCommande {
+  width: 30%;
+  margin: auto;
+  margin-top: 2em;
+  padding-top: 1em;
+}
+.numberCommande {
+  color: white;
+}
+.numberCommande,
+.priceCommande {
+  text-align: center;
+  font-size: 1.5em;
+  padding: 0 0 0.5em 0;
+}
+.priceCommande {
+  color: black;
+  margin: 0;
+}
+.containNumber {
+  padding: 0;
+  margin: 0;
+}
+.backgroundCommande {
+  margin-top: 0;
+}
+/*---------------------footer*/
 footer {
   display: flex;
   justify-content: center;

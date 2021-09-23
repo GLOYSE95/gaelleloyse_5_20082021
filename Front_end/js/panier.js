@@ -299,23 +299,46 @@ btnCommander.addEventListener("click", (event) => {
       leFormulaireCGV.checked
     ) {
       //Creation objet contact avec donnés user
-      let contact = {};
-      class contactForm {
-        constructor() {
-          this.firstName = document.getElementById("firstName").value;
-          this.lastName = document.getElementById("lastName").value;
-          this.email = document.getElementById("email").value;
-          this.address = document.getElementById("address").value;
-          this.city = document.getElementById("city").value;
-        }
-      }
-      contact = new contactForm();
-      console.log(contact);
-      let dataAEnvoyer = { contact, localStorageOrinoco };
+
+      var firstName = document.getElementById("firstName").value;
+      var lastName = document.getElementById("lastName").value;
+      var address = document.getElementById("address").value;
+      var city = document.getElementById("city").value;
+      var email = document.getElementById("email").value;
+
+      var contact = {
+        firstName,
+        lastName,
+        address,
+        city,
+        email,
+      };
+      localStorageOrinoco = JSON.parse(localStorage.getItem("produitUser"));
+      let products = localStorageOrinoco;
+      let envoyer = { contact, products };
+      console.log(envoyer);
+
+      // ------Requete post envois des données format JSON
+
+      fetch("http://localhost:3000/api/cameras/order", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(envoyer),
+      })
+        .then((response) => response.json())
+        .then((request) => {
+          console.log("Success:", request);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     } else {
       alert(
         "Veuillez bien remplir le formulaire et accepter les conditions générales de vente"
       );
     }
+    //window.location.href = "confirm.html";
   });
 });
