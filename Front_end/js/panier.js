@@ -37,7 +37,7 @@ if (localStorageOrinoco === null || localStorageOrinoco == 0) {
                 <h5 id="panierProductName" class="oneCard--h3">Produit sélectionné : <span>${element.nomProduit}</span></span></h5>
             </div>
             <div for="personalisation">
-                <p class="panierParagraphe">Option lentille : ${element.option}</p>
+                <p class="panierParagraphe">Option lentille : ${element.optionProduit}</p>
             </div>
             <div>
             <p class="panierParagraphe">Quantité : 1ex </p>
@@ -124,6 +124,16 @@ var prixTotalHtml = `
 <div class="priceCamera panierParagraphe">Prix total de votre panier : ${totalPrix} €</div>`;
 prixTotal.innerHTML = prixTotalHtml;
 
+//Stocker le prix dans le local storage
+//Variable données du Local Storage  + converties en json
+let totalPrixConfirm = totalPrix;
+console.log(totalPrixConfirm);
+
+const localStoragePrixConfirm = () => {
+  localStorage.setItem("totalPrixConfirm", JSON.stringify(totalPrixConfirm));
+};
+localStoragePrixConfirm();
+
 //Pointer sur bouton commander et constante Html formulaire
 const btnCommander = document.getElementById("commander");
 
@@ -139,7 +149,7 @@ btnCommander.addEventListener("click", (event) => {
         <div class="h2--background">
           <h2>Formulaire de commande</h2>
         </div>
-        <form action="" method="post" id="formCommande">
+        <form action="" method="" id="formCommande">
           <div class="bg-light bg-light-form">
 
             <div class="form-group">
@@ -314,9 +324,13 @@ btnCommander.addEventListener("click", (event) => {
         email,
       };
       localStorageOrinoco = JSON.parse(localStorage.getItem("produitUser"));
-      let products = localStorageOrinoco;
+      let products = new Array();
+      for (i in localStorageOrinoco) {
+        products.push(localStorageOrinoco[i].idProduit);
+      }
+
       let envoyer = { contact, products };
-      console.log(envoyer);
+      //console.log(envoyer);
 
       // ------Requete post envois des données format JSON
 
@@ -330,6 +344,17 @@ btnCommander.addEventListener("click", (event) => {
         .then((response) => response.json())
         .then((request) => {
           console.log("Success:", request);
+          let idOrderRequest = request.orderId;
+          console.log(idOrderRequest);
+          //Stocker le le numero dans le local storage
+          //Variable données du Local Storage  + converties en json
+          const localStorageNumber = () => {
+            localStorage.setItem(
+              "numberConfirm",
+              JSON.stringify(idOrderRequest)
+            );
+          };
+          localStorageNumber();
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -339,6 +364,7 @@ btnCommander.addEventListener("click", (event) => {
         "Veuillez bien remplir le formulaire et accepter les conditions générales de vente"
       );
     }
-    //window.location.href = "confirm.html";
+
+    window.location.href = "confirm.html";
   });
 });

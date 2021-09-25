@@ -26,12 +26,13 @@ const displayCamera = async () => {
 
   //pointer la balise select et ajouter le nombre d'options;
   const pointeurOptions = document.getElementById("optionsProduct");
+
   for (let i = 0; i < options.length; i++) {
     let create = document.createElement("option");
     pointeurOptions.appendChild(create);
     create.textContent = cam.lenses[i];
     //creation des attributs value;
-    create.setAttribute("value", `opt${i + 1}`);
+    create.setAttribute("value", `${cam.lenses[i]}`);
   }
 
   document.getElementById("imgProduct").src = cam.imageUrl;
@@ -55,6 +56,7 @@ const envoyerDonnées = async () => {
   btnAjout.addEventListener("click", (event) => {
     event.preventDefault();
     const optionChoice = pointeurOptions.value;
+
     let addToCard = {
       imgProduit: cam.imageUrl,
       nomProduit: cam.name,
