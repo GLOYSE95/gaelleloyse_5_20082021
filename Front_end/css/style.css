@@ -2158,8 +2158,26 @@ progress {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
+  .cardCommande {
+    margin-top: 20px;
+  }
   h5#panierProductName {
     font-size: 16px;
+  }
+  .hero--logoCommande {
+    margin-top: 0;
+    width: 130px;
+  }
+  .h2commande--white,
+  .priceCommande {
+    font-size: 16px;
+  }
+  .numberCommande {
+    padding-top: 10px;
+    font-size: 15px;
+  }
+  .h2--background.backgroundCommande {
+    margin: 0px 0 20px 0;
   }
   .panierParagraphe {
     font-size: 14px;
