@@ -349,7 +349,9 @@ footer {
   color: white;
   font-family: Oswald, helvetica, Arial, Helvetica, sans-serif;
 }
-
+.reseaux {
+  padding-left: 0;
+}
 li {
   font-weight: 300;
   padding: 10px;

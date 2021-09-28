@@ -7,7 +7,10 @@ const linkProduct = document.getElementsByClassName("oneCard");
 const fetchCam = async () => {
   await fetch("http://localhost:3000/api/cameras")
     .then((res) => res.json())
-    .then((data) => (cameras = data));
+    .then((data) => (cameras = data))
+    .catch(function (err) {
+      console.log("error" + err);
+    });
 };
 
 //arrondir le prix

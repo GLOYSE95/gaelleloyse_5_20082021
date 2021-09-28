@@ -9,7 +9,10 @@ const getCameraId = () => {
 const fetchCamera = async () => {
   await fetch(`http://localhost:3000/api/cameras/${getCameraId()}`)
     .then((res) => res.json())
-    .then((data) => (cam = data));
+    .then((data) => (cam = data))
+    .catch(function (err) {
+      console.log("error" + err);
+    });
 };
 
 //arrondir le prix
@@ -33,6 +36,7 @@ const displayCamera = async () => {
     create.textContent = cam.lenses[i];
     //creation des attributs value;
     create.setAttribute("value", `${cam.lenses[i]}`);
+    console.log(`${cam.lenses[i]}`);
   }
 
   document.getElementById("imgProduct").src = cam.imageUrl;
@@ -73,12 +77,11 @@ const envoyerDonnées = async () => {
       localStorageOrinoco.push(addToCard);
       localStorage.setItem("produitUser", JSON.stringify(localStorageOrinoco));
     };
-    //Si panier vide
     if (localStorageOrinoco) {
       //Si produit dans le panier
       localStorageAjoutProduit();
     } else {
-      //Si panier pas vide
+      //Si panier vide
       localStorageOrinoco = [];
       localStorageAjoutProduit();
     }

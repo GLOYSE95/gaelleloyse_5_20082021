@@ -67,6 +67,10 @@ for (let j = 0; j < selectBtnSupprimer.length; j++) {
     window.location.href = "panier.html";
   });
 }
+if (localStorageOrinoco.length == 0) {
+  localStorage.removeItem("produitUser");
+  window.location.href = "panier.html";
+}
 
 //Vider entièrement le panier si il n'est pas vide
 if (localStorageOrinoco !== null) {
@@ -345,16 +349,15 @@ btnCommander.addEventListener("click", (event) => {
         .then((request) => {
           console.log("Success:", request);
           let idOrderRequest = request.orderId;
-          console.log(idOrderRequest);
           //Stocker le le numero dans le local storage
-          //Variable données du Local Storage  + converties en json
-          const localStorageNumber = () => {
-            localStorage.setItem(
-              "numberConfirm",
-              JSON.stringify(idOrderRequest)
-            );
-          };
-          localStorageNumber();
+          //Variable données du Local Storage  + converties en json string
+          let localStorageNumber = localStorage.setItem(
+            "numberConfirm",
+            JSON.stringify(idOrderRequest)
+          );
+          let numberConfirm = JSON.parse(localStorage.getItem("numberConfirm"));
+          localStorage.removeItem("produitUser");
+          document.location.href = "confirm.html?id=" + numberConfirm;
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -364,7 +367,5 @@ btnCommander.addEventListener("click", (event) => {
         "Veuillez bien remplir le formulaire et accepter les conditions générales de vente"
       );
     }
-
-    window.location.href = "confirm.html";
   });
 });
