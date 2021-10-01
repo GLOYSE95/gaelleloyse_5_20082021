@@ -59,6 +59,7 @@ const envoyerDonnées = async () => {
   const btnAjout = document.getElementById("btnEnvoiPanier");
   btnAjout.addEventListener("click", (event) => {
     event.preventDefault();
+    alert("Produit ajouté au panier");
     const optionChoice = pointeurOptions.value;
 
     let addToCard = {

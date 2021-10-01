@@ -180,7 +180,7 @@ btnCommander.addEventListener("click", (event) => {
             </div>
 
             <input type="checkbox" name="cgv" class="form-check-input inputValidation" id="cgv">
-            <label for="cgv">J'accepte les conditions générales de vente</label>
+            <label for="cgv" class="acceptation">J'accepte les conditions générales de vente</label>
             <p id="errorCGV" class="error"></p>
             <input type="submit" name="validate" value="Valider votre commande" class="inputFormulaire inputValidation" id="validerCommande">
           </form>  

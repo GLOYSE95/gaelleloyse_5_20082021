@@ -2155,6 +2155,13 @@ progress {
   -webkit-overflow-scrolling: touch;
 }
 
+@media (max-width: 322px) {
+  label.acceptation {
+    padding-top: 0;
+    padding-bottom: 20px;
+  }
+}
+
 @media (max-width: 575.98px) {
   .table-responsive-sm {
     overflow-x: auto;
@@ -2184,14 +2191,17 @@ progress {
   .panierParagraphe {
     font-size: 14px;
   }
-  .inputSuppression,
-  .inputValidation {
+  .inputSuppression {
     font-size: 14px;
+  }
+  .inputValidation {
+    font-size: 18px;
   }
   .panierParagraphe {
     padding: 0 20px 5px;
   }
 }
+
 @media (max-width: 450px) {
   .panierSelectionImg {
     display: none;
@@ -2204,6 +2214,9 @@ progress {
   }
   .panierParagraphe {
     padding-left: 10px;
+  }
+  .acceptation {
+    font-size: 12px;
   }
 }
 
@@ -2289,6 +2302,12 @@ progress {
   .panierSelectionImg img[src*="vcam_5.jpg"] {
     width: 230%;
     transform: translate(-120px, -20px);
+  }
+  .bg-light-form {
+    padding: 20px 10px;
+  }
+  .col-6 {
+    width: 100%;
   }
 }
 
